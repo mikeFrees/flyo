@@ -66,12 +66,25 @@ main div {
   font-weight: 700;
   font-style: normal;
   width: 33.149%;
-  height: 74.35%
+  height: 74.35%;
+  border-bottom-right-radius: 0px;
 }
 
 .info-bubble strong{
   color: var(--Very-dark-blue);
   font-size: 40px;
+}
+
+.info-bubble::after {
+  position: relative;
+  top: 51%;
+  left: 88%;
+  content: "";
+  display: block;
+  width: 12.1%;
+  height: 21.88%;
+  background: white;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
 }
 
 header {
