@@ -1,22 +1,17 @@
-const slider = document.querySelector('.slider');
-const sliderFiller = document.querySelector('.progress-bar-fill');
-let interval = null;
-slider.addEventListener('mousedown', progressBar);
-slider.addEventListener('touchstart', progressBar);
-slider.addEventListener('mouseup', () => {
-  clearInterval(interval);
-}); 
-slider.addEventListener('touchend', () => {
-  clearInterval(interval);
-});
-function progressBar() {
-  interval = setInterval(() => {
-  let width = (slider.value / 10) + 1;
-  if (width > 50) {
-    width -= (width / 10) * 0.1;
-  }
-  sliderFiller.style.width = `${width}%`;
-  }, 10);
-}
+const slider = document.querySelector(".slider");
+const sliderFiller = document.querySelector(".progress-bar-fill");
+const spaceLeft = document.getElementById("space-left");
+const spaceUsed = document.getElementById("space-used");
 
-progressBar();
+let interval = null;
+
+slider.addEventListener("input", updateProgress);
+
+function updateProgress() {
+
+  let width = (slider.value / slider.max) * 100;
+  sliderFiller.style.width = `${width}%`;
+  spaceLeft.textContent = 1000 - slider.value;
+  spaceUsed.textContent = `${slider.value} GB`;
+}
+updateProgress();
